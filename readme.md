@@ -5,7 +5,7 @@
 
 ## quick start
 1. 定义错误
-```
+    ```
     // 第一参数为自定义错误吗
 	// 第二个参数为http状态码
 	// 第三个错误为错误信息
@@ -25,9 +25,9 @@
 	BindErr := group.New(4000002, "参数解析错误")
 	// 打印方法
 	fmt.Println(BindErr.Code(), BindErr.HttpCode(), BindErr.Error())
-```
+    ```
 2. 使用
-```
+    ```
     // 推荐返回为error，更通用
 	err := func() error {
 		return InvalidParamsErr
@@ -43,5 +43,5 @@
 	}()
 	code = Cause(err)
 	fmt.Println(code.Code(), code.HttpCode(), code.Error())
-```
+    ```
 
