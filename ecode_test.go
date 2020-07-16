@@ -17,6 +17,8 @@ func TestECode(t *testing.T) {
 		codes Codes
 	)
 
+	t.Log(OK.Code(), OK.HttpCode(), OK.Error())
+
 	code = NewCode(4000001, 401, "你好%s%s")
 	t.Log(code.Code(), code.HttpCode(), code.SetArgs("ok", "ok2").Error())
 
@@ -31,13 +33,13 @@ func TestECode(t *testing.T) {
 	// catch error and using Cause converting to Codes
 	err = testErrReturn()
 	codes = Cause(err)
-	t.Log(codes.Code(), code.HttpCode(), codes.Error())
+	t.Log(codes.Code(), codes.HttpCode(), codes.Error())
 
-	// if catch an unKnow err that doesn't register in _codes will returns ServerErr
+	// if catch an unKnow err that doesn't register in _codes will returns UnDefinedErr
 	// you can add log to get the err
 	err = testUnKnowErr()
 	codes = Cause(err)
-	t.Log(codes.Code(), code.HttpCode(), codes.Error())
+	t.Log(codes.Code(), codes.HttpCode(), codes.Error())
 
 	// test cause
 	err = testErrMsg()

@@ -3,7 +3,6 @@ package ecode
 import (
 	"fmt"
 	"github.com/pkg/errors"
-	"strconv"
 	"strings"
 )
 
@@ -31,7 +30,7 @@ func (e Code) Error() string {
 	return e.msg
 }
 
-func (e Code) HttpCode() int { return e.httpStatusCode}
+func (e Code) HttpCode() int { return e.httpStatusCode }
 
 // Code return error code
 func (e Code) Code() int { return e.errCode }
@@ -90,22 +89,5 @@ func Cause(e error) Codes {
 	if ok {
 		return ec
 	}
-	return String(e.Error())
-}
-
-// String parse code string to error.
-func String(e string) Code {
-	if e == "" {
-		return OK
-	}
-	// try error string
-	i, err := strconv.Atoi(e)
-	if err != nil {
-		return ServerErr
-	}
-	if hc, ok := _codes[i]; !ok {
-		return ServerErr
-	} else {
-		return NewCode(i, hc, e)
-	}
+	return UnDefinedErr.SetArgs(e.Error())
 }

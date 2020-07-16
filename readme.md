@@ -6,7 +6,7 @@
 ## quick start
 1. 定义错误
     ```
-    // 第一参数为自定义错误吗
+    // 第一参数为自定义错误码
 	// 第二个参数为http状态码
 	// 第三个错误为错误信息
 	InvalidParamsErr := NewCode(4000001, 400, "参数错误")
@@ -45,3 +45,5 @@
 	fmt.Println(code.Code(), code.HttpCode(), code.Error())
     ```
 
+## 说明
+- 默认code
